@@ -22,10 +22,10 @@ const Header = () => {
           <NavLink to={"/category"} className="nav-link" >Category</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to={"/signup"} className="nav-link">SignUp</NavLink>
+          <NavLink to={"/register"} className="nav-link">Register</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to={"/login"} className="nav-link" >SignIn</NavLink>
+          <NavLink to={"/login"} className="nav-link" >Login</NavLink>
         </li>
         <li className="nav-item">
           <NavLink to={"/cart"} className="nav-link">Cart (0)</NavLink>
