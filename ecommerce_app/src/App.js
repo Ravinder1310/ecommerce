@@ -11,6 +11,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from "./pages/user/dashboard";
 import PrivateRoute from "./components/routes/PrivateRoute";
 import ForgotPassword from "./pages/ForgotPassword";
+import AdminRoute from "./components/routes/AdminRoutes";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import CreateCategory from "./pages/Admin/CreateCategory";
+import CreateProducts from "./pages/Admin/CreateProducts";
+import User from "./pages/Admin/User";
+import Orders from "./pages/user/Orders";
+import Profile from "./pages/user/Profile";
 
 function App() {
   return (
@@ -19,7 +26,15 @@ function App() {
       <Route path="/" element={<Landing/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/dashboard" element={<PrivateRoute/>}>
-      <Route path="" element={<Dashboard/>}/>
+      <Route path="user" element={<Dashboard/>}/>
+      <Route path="user/orders" element={<Orders/>}/>
+      <Route path="user/profile" element={<Profile/>}/>
+      </Route>
+      <Route path="/dashboard" element={<AdminRoute/>}>
+      <Route path="admin" element={<AdminDashboard/>}/>
+      <Route path="admin/create-category" element={<CreateCategory/>}/>
+      <Route path="admin/create-product" element={<CreateProducts/>}/>
+      <Route path="admin/users" element={<User/>}/>
       </Route>
       <Route path="/login" element={<Login/>}/>
       <Route path="/forgot-password" element={<ForgotPassword/>}/>

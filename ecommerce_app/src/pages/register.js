@@ -35,34 +35,85 @@ const Register = () => {
   }
 
   return (
-   <Layout title={'Register - Ecommerce app'}>
-       <div className='form-container'>
-          <h1 className='title'>Register page</h1>
-          <form onSubmit={handleSubmit}>
-  <div className="mb-3">
-    <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder='Name' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-  </div>
-  <div className="mb-3">
-    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-  </div>
-  <div className="mb-3">
-    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <div className="mb-3">
-    <input type="number" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder='Phone' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <div className="mb-3">
-    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder='Address' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <div className="mb-3">
-    <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder='Who is your best friend' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <button type="submit" className="btn btn-primary">Register</button>
-</form>
-
-       </div>
-   </Layout>
-  )
+    <Layout title={"Register - Ecommerce app"}>
+      <div className="form-container">
+        <h1 className="title">Register page</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Phone"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Address"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Who is your best friend"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
+        </form>
+      </div>
+    </Layout>
+  );
 }
 
 export default Register

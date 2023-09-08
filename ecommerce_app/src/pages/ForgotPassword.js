@@ -31,25 +31,51 @@ const ForgotPassword = () => {
     }
   return (
     <Layout title={"Forgot password - Ecommerce app"}>
-        <div className='form-container'>
-          <h1 className='title'>Reset Password</h1>
-          <form onSubmit={handleSubmit}>
-  <div className="mb-3">
-    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-  </div>
-  
-  <div className="mb-3">
-    <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder='Who is your best friend' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <div className="mb-3">
-    <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder='New Password' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <button type="submit" className="btn btn-primary">Reset</button>
-</form>
+      <div className="form-container">
+        <h1 className="title">Reset Password</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
 
-       </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Who is your best friend"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="New Password"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Reset
+          </button>
+        </form>
+      </div>
     </Layout>
-  )
+  );
 }
 
 export default ForgotPassword

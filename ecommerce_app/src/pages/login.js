@@ -40,25 +40,51 @@ const Login = () => {
   }
 
   return (
-    <Layout title={'Login - Ecommerce app'}>
-       <div className='form-container'>
-          <h1 className='title'>Login page</h1>
-          <form onSubmit={handleSubmit}>
-  <div className="mb-3">
-    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required />
-  </div>
-  <div className="mb-3">
-    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className="form-control" id="exampleInputPassword1" required />
-  </div>
-  <div className='mb-3'>
-  <button type="button" className="btn btn-primary" onClick={() => {navigate('/forgot-password')}}>Forgot Password</button>
-  </div>
-  <button type="submit" className="btn btn-primary">Login</button>
-</form>
-
-       </div>
-   </Layout>
-  )
+    <Layout title={"Login - Ecommerce app"}>
+      <div className="form-container">
+        <h1 className="title">Login page</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="form-control"
+              id="exampleInputPassword1"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                navigate("/forgot-password");
+              }}
+            >
+              Forgot Password
+            </button>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+        </form>
+      </div>
+    </Layout>
+  );
 }
 
 export default Login

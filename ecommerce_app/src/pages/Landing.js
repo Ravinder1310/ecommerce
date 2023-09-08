@@ -6,12 +6,12 @@ const Landing = () => {
   const [auth, setAuth] = useAuth()
   return (
     <div>
-        <Layout>
+      <Layout>
         <h1>Homepage</h1>
         <pre>{JSON.stringify(auth, null, 4)}</pre>
-        </Layout>
+      </Layout>
     </div>
-  )
+  );
 }
 
 export default Landing
