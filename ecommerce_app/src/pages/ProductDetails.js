@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/layouts/Layout'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useCart } from '../context/cart'
+import toast from 'react-hot-toast'
 
 const ProductDetails = () => {
   const params = useParams();
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
+  const [cart, setCart] = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,7 +55,13 @@ const getSimilarProducts = async(pid,cid) => {
           <h4>Description : {product.description}</h4>
           <h4>Price : ${product.price}</h4>
           <h4>Category : {product.category?.name}</h4>
-          <button className='btn btn-secondary ms-1'>Add to Cart</button>
+          <button className='btn btn-secondary ms-1'
+           onClick={() => {
+            setCart([...cart, product]);
+            localStorage.setItem('cart',JSON.stringify([...cart, product]))
+            toast.success("Item added to Cart");
+          }}
+          >Add to Cart</button>
         </div>
       </div>
       <hr/>
@@ -76,7 +85,13 @@ const getSimilarProducts = async(pid,cid) => {
                       <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>
                         More Details
                       </button>
-                      <button className="btn btn-secondary ms-1">
+                      <button className="btn btn-secondary ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem('cart',JSON.stringify([...cart, p]))
+                        toast.success("Item added to Cart");
+                      }}
+                      >
                         Add to Cart
                       </button>
                     </div>
