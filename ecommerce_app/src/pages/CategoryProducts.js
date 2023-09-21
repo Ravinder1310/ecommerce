@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/layouts/Layout'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import Loader from '../components/loader';
+import { useCart } from '../context/cart';
+import toast from 'react-hot-toast';
 
 const CategoryProducts = () => {
    const params = useParams();
    const [products, setProducts] = useState([]);
    const [category, setCategory] = useState([]);
+   const [loading, setLoading] = useState(false);
+  const [cart, setCart] = useCart();
    const navigate = useNavigate()
    
   useEffect(() => {
@@ -15,28 +20,33 @@ const CategoryProducts = () => {
 
    const getProductByCategory = async() => {
     try {
+      setLoading(true);
         const {data} = await axios.get(`${process.env.REACT_APP_API}/api/v1/product/product-category/${params.slug}`);
+        setLoading(false);
         setProducts(data?.products);
         setCategory(data?.category)
     } catch (error) {
+      setLoading(false);
         console.log(error);
     }
    }
 
   return (
     <Layout title={'Category - Ecommerce app'}>
-        <div className='container mt-3'>
-            <h4 className='text-center'>Category :- {category?.name}</h4>
-            <h6 className='text-center'>{products?.length} result found</h6>
+      <h1 className='text-center'>Category :- {category?.name}</h1>
+      {
+            loading ? <Loader/> : 
+            <div className='container mt-3'>
+            <h6 className='text-center'>{products?.length} {products?.length > 1 ? 'results' : 'result'} found</h6>
             <div className='row'>
             <div className="col-md-9 offset-1">
             <div className="d-flex flex-wrap">
-              <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                   <div className="card m-2" style={{ width: "18rem" }}>
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
+                      height={'250px'}
                       alt={p.name}
                     />
                     <div className="card-body">
@@ -48,13 +58,18 @@ const CategoryProducts = () => {
                       <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>
                         More Details
                       </button>
-                      <button className="btn btn-secondary ms-1">
+                      <button className="btn btn-secondary ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem('cart',JSON.stringify([...cart, p]))
+                        toast.success("Item added to Cart");
+                      }}
+                      >
                         Add to Cart
                       </button>
                     </div>
                   </div>
                 ))}
-              </div>
             </div>
             {/* <div className="m-2 p-3">
               {products && products.length < total && (
@@ -72,6 +87,8 @@ const CategoryProducts = () => {
           </div>
             </div>
         </div>
+          }
+        
     </Layout>
   )
 }

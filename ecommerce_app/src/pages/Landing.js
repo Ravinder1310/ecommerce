@@ -157,12 +157,12 @@ const Landing = () => {
           <div className="col-md-9 offset-1">
             <h1 className="text-center">All Products</h1>
             <div className="d-flex flex-wrap">
-              <div className="d-flex flex-wrap">
                 {products?.map((p) => (
-                  <div className="card m-2" style={{ width: "18rem" }}>
+                  <div className="card m-2" style={{ width: "17rem" }}>
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
+                      height={'290px'}
                       alt={p.name}
                     />
                     <div className="card-body">
@@ -190,9 +190,8 @@ const Landing = () => {
                     </div>
                   </div>
                 ))}
-              </div>
             </div>
-            <div className="m-2 p-3">
+            <div className="container text-center m-2 p-3">
               {products && products.length < total && (
                 <button
                   className="btn btn-warning"

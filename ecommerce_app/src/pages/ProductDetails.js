@@ -56,7 +56,7 @@ const getSimilarProducts = async(pid,cid) => {
           <h4>Price : ${product.price}</h4>
           <h4>Category : {product.category?.name}</h4>
           <button className='btn btn-secondary ms-1'
-           onClick={() => {
+          onClick={() => {
             setCart([...cart, product]);
             localStorage.setItem('cart',JSON.stringify([...cart, product]))
             toast.success("Item added to Cart");
@@ -74,6 +74,7 @@ const getSimilarProducts = async(pid,cid) => {
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
+                      height={'250px'}
                       alt={p.name}
                     />
                     <div className="card-body">

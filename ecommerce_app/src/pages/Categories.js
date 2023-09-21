@@ -7,18 +7,17 @@ const Categories = () => {
     const categories = useCategory();
   return (
     <Layout title={'Categories - Ecommerce app'}>
-        <div className='container'>
-            <div className='row'>
-                {categories?.map((c) => (
-                    <div className='col-md-6 mt-5 mb-3gx-3 gy-3' key={c._id}>
-                    <button className='btn btn-primary text-light'>
-                        <Link to={`/category/${c.slug}`} className='btn btn-primary'>{c.name}</Link>
-                    </button>
-                </div>
-                ))}
-                
+      <div className='container'>
+        <div className='row text-center'>
+          {categories?.map((c) => (
+            <div className='col-md-3 mt-5 mb-3' key={c._id}>
+              <button className='btn btn-primary text-light w-100 p-4 btn-lg'>
+                <Link to={`/category/${c.slug}`} className='text-light text-decoration-none'>{c.name}</Link>
+              </button>
             </div>
+          ))}
         </div>
+      </div>
     </Layout>
   )
 }
