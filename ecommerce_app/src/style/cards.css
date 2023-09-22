@@ -16,3 +16,21 @@
       justify-content: center;
     }
   }
+
+  @media screen and (max-width: 375px) {
+    .card-body {
+      padding: 10px; /* Reduce padding for better space utilization */
+    }
+  
+    /* Adjust button styles to make them fit */
+    .btn {
+      font-size: 8px; /* Increase font size for buttons */
+      padding: 5px 4px; /* Increase button padding */
+    }
+  }
+  
+  
+  
+  
+  
+  
