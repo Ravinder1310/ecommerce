@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/layouts/Layout";
 import AdminMenu from "../../components/layouts/AdminMenu";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const User = () => {
   const [users, setUsers] = useState([]);

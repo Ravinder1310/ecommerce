@@ -38,38 +38,40 @@ const CategoryProducts = () => {
     <Layout title={'Category - Ecommerce app'}>
       <h1 className='text-center mt-2' style={{color:"blue"}}>{category?.name}</h1>
       {
-            loading ? <div style={{textAlign:"center"}}> <img width={'400px'} height={'400px'} src='/images/spinner.gif'/></div> : 
+            loading ? <div style={{textAlign:"center"}}> <img width={'300px'} height={'300px'} src='/images/spinner.gif'/></div> : 
             <div className='container mt-3'>
             <h6 className='text-center'>{products?.length} {products?.length > 1 ? 'results' : 'result'} found</h6>
             <div className='row'>
             <div className="col-md-9 offset-1">
             <div className="d-flex flex-wrap">
                 {products?.map((p) => (
-                  <div className="card m-2" style={{ width: "18rem" }}>
+                  <div className="card m-2" style={{ width: "15rem" }}>
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top"
-                      height={'250px'}
+                      height={'170px'}
                       alt={p.name}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{p.name}</h5>
+                      <h5 className="card-title">{p.name.substring(0, 21)}</h5>
                       <p className="card-text">
-                        {p.description.substring(0, 40)}...
+                        {p.description.substring(0, 30)}...
                       </p>
                       <div style={{display:"flex",justifyContent:"space-between"}}>
                         <p className="card-text offer">Offer: {Math.floor(Math.random() * (max - min + 1)) + min}%</p>
                       <p className="card-text price">Price:- ${p.price}</p>
                       </div>
-                      <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>
+                      <button className="btn btn-primary" style={{fontSize:"11px"}} onClick={() => navigate(`/product/${p.slug}`)}>
                         More Details
                       </button>
-                      <button className="btn btn-secondary ms-1"
+                      <button className="btn btn-secondary"
                       onClick={() => {
                         setCart([...cart, p]);
                         localStorage.setItem('cart',JSON.stringify([...cart, p]))
                         toast.success("Item added to Cart");
+                        
                       }}
+                      style={{fontSize:"11px",marginLeft:"25px"}}
                       >
                         Add to Cart
                       </button>

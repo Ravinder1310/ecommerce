@@ -136,6 +136,7 @@ const Landing = () => {
                 <Checkbox
                   key={c._id}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
+                  style={{fontSize:"13px" }}
                 >
                   {c.name}
                 </Checkbox>
@@ -164,17 +165,17 @@ const Landing = () => {
             <Swipper/>
             <div className="d-flex flex-wrap">
                 {products?.map((p) => (
-                  <div style={{ width: "17rem",boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="card m-2">
+                  <div style={{ width: "13rem",boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="card m-2">
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
                       className="card-img-top zoom-image"
-                      height={'290px'}
+                      height={'170px'}
                       alt={p.name}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{p.name.substring(0, 20)}...</h5>
+                      <h6 className="card-title">{p.name.substring(0, 17)}...</h6>
                       <p className="card-text">
-                        {p.description.substring(0, 40)}...
+                        {p.description.substring(0, 30)}...
                       </p>
                       <div style={{display:"flex",justifyContent:"space-between"}}>
                         <p className="card-text offer">Offer: {Math.floor(Math.random() * (max - min + 1)) + min}%</p>
@@ -182,8 +183,9 @@ const Landing = () => {
                       </div>
                       
                       <button
-                        className="btn btn-primary ms-1"
+                        className="btn btn-primary"
                         onClick={() => navigate(`/product/${p.slug}`)}
+                        style={{fontSize:"11px"}}
                       >
                         More Details
                       </button>
@@ -194,6 +196,7 @@ const Landing = () => {
                           localStorage.setItem('cart',JSON.stringify([...cart, p]))
                           toast.success("Item added to Cart");
                         }}
+                        style={{fontSize:"11px"}}
                       >
                         Add to Cart
                       </button>

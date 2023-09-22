@@ -25,9 +25,10 @@ const Spinner = ({path= "login"}) => {
         style={{ height: "100vh" }}
       >
         <h1 className="Text-center">Redirecting to you in {count} seconds</h1>
-        <div className="spinner-border" role="status">
+        {/* <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
-        </div>
+        </div> */}
+         <div style={{textAlign:"center"}}> <img width={'300px'} height={'300px'} src='/images/spinner.gif'/></div>
       </div>
     </>
   );
