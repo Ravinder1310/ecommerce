@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import Layout from '../components/layouts/Layout'
 import { useSearch } from '../context/Search'
+import { useCart } from '../context/cart';
+import toast from 'react-hot-toast';
 
 const Search = () => {
 
     const [values, setValues] = useSearch();
+    const [cart, setCart] = useCart();
     console.log(values);
 
   return (
@@ -30,10 +33,20 @@ const Search = () => {
                         {p.description.substring(0, 40)}...
                       </p>
                       <p className="card-text">Price:- {p.price}</p>
-                      <button className="btn btn-primary ms-1">
+                      <button className="btn btn-primary ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                      style={{fontSize:"11px"}}
+                      >
                         More Details
                       </button>
-                      <button className="btn btn-secondary ms-1">
+                      <button className="btn btn-secondary ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem('cart',JSON.stringify([...cart, p]))
+                        toast.success("Item added to Cart");
+                      }}
+                      style={{fontSize:"11px"}}
+                      >
                         Add to Cart
                       </button>
                     </div>
