@@ -13,6 +13,9 @@ const CategoryProducts = () => {
    const [loading, setLoading] = useState(false);
   const [cart, setCart] = useCart();
    const navigate = useNavigate()
+
+  const min = 10;
+  const max = 75;
    
   useEffect(() => {
    if(params?.slug) getProductByCategory()
@@ -33,9 +36,9 @@ const CategoryProducts = () => {
 
   return (
     <Layout title={'Category - Ecommerce app'}>
-      <h1 className='text-center'>Category :- {category?.name}</h1>
+      <h1 className='text-center mt-2' style={{color:"blue"}}>{category?.name}</h1>
       {
-            loading ? <Loader/> : 
+            loading ? <div style={{textAlign:"center"}}> <img width={'400px'} height={'400px'} src='/images/spinner.gif'/></div> : 
             <div className='container mt-3'>
             <h6 className='text-center'>{products?.length} {products?.length > 1 ? 'results' : 'result'} found</h6>
             <div className='row'>
@@ -54,7 +57,10 @@ const CategoryProducts = () => {
                       <p className="card-text">
                         {p.description.substring(0, 40)}...
                       </p>
-                      <p className="card-text">Price:- ${p.price}</p>
+                      <div style={{display:"flex",justifyContent:"space-between"}}>
+                        <p className="card-text offer">Offer: {Math.floor(Math.random() * (max - min + 1)) + min}%</p>
+                      <p className="card-text price">Price:- ${p.price}</p>
+                      </div>
                       <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>
                         More Details
                       </button>

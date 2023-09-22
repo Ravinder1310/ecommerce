@@ -1,0 +1,38 @@
+.sidebar{
+    padding: 30px;
+    /* border: 1px solid red;   */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media screen and (max-width: 950px) {
+   .sidebar{
+       display: none;
+   }
+   .container1{
+    width: 100%;
+   }
+  }
+
+  @media screen and (max-width: 1541px) {
+    .container1{
+        align-items: center;
+        justify-content: center;
+    }
+   }
+
+.price{
+    color: green;
+    font-weight: 800;
+    text-align: right;
+}
+
+.offer{
+    color: red;
+    font-weight: 800;
+    text-align: right;
+}
+
+.sidebar>h4{
+    color: grey;
+    font-family: sans-serif;
+}

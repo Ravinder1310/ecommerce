@@ -42,8 +42,8 @@ const Login = () => {
   return (
     <Layout title={"Login - Ecommerce app"}>
       <div className="form-container">
-        <h1 className="title">Login page</h1>
-        <form onSubmit={handleSubmit}>
+        <h1 className="title">Login</h1>
+        <form onSubmit={handleSubmit} style={{textAlign:"right"}}>
           <div className="mb-3">
             <input
               type="email"
@@ -67,10 +67,12 @@ const Login = () => {
               required
             />
           </div>
+         
           <div className="mb-3">
             <button
               type="button"
               className="btn btn-primary"
+              style={{width:"100px",fontSize:"10px"}}
               onClick={() => {
                 navigate("/forgot-password");
               }}

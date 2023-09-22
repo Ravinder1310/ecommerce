@@ -1,0 +1,12 @@
+.zoom-image {
+    transition: transform 0.2s; 
+  }
+  
+  .zoom-image:hover {
+    transform: scale(0.9);
+  }
+
+
+.bigContainer{
+    gap: 80px;
+}

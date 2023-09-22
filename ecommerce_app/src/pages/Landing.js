@@ -6,6 +6,9 @@ import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
+import "../style/cards.css"
+import "../style/sidebar.css"
+import Swipper from "../components/Swipper";
 
 const Landing = () => {
   const [products, setProducts] = useState([]);
@@ -17,6 +20,9 @@ const Landing = () => {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
+
+  const min = 10;
+  const max = 75;
 
   //get all category
   const getAllCategory = async () => {
@@ -121,9 +127,9 @@ const Landing = () => {
 
   return (
     <div>
-      <Layout title={"All Products - Ecommerce app"}>
-        <div className="row mt-3">
-          <div className="col-md-2">
+      <Layout title={"Home - Ecommerce app"}>
+        <div className="row bigContainer">
+          <div className="col-md-2 sidebar">
             <h4 className="text-center">Filter by Category</h4>
             <div className="d-flex flex-column">
               {categories?.map((c) => (
@@ -154,23 +160,27 @@ const Landing = () => {
               </button>
             </div>
           </div>
-          <div className="col-md-9 offset-1">
-            <h1 className="text-center">All Products</h1>
+          <div className="col-md-9 container1">
+            <Swipper/>
             <div className="d-flex flex-wrap">
                 {products?.map((p) => (
-                  <div className="card m-2" style={{ width: "17rem" }}>
+                  <div style={{ width: "17rem",boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="card m-2">
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top"
+                      className="card-img-top zoom-image"
                       height={'290px'}
                       alt={p.name}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{p.name}</h5>
+                      <h5 className="card-title">{p.name.substring(0, 20)}...</h5>
                       <p className="card-text">
                         {p.description.substring(0, 40)}...
                       </p>
-                      <p className="card-text">Price:- ${p.price}</p>
+                      <div style={{display:"flex",justifyContent:"space-between"}}>
+                        <p className="card-text offer">Offer: {Math.floor(Math.random() * (max - min + 1)) + min}%</p>
+                      <p className="card-text price">Price:- ${p.price}</p>
+                      </div>
+                      
                       <button
                         className="btn btn-primary ms-1"
                         onClick={() => navigate(`/product/${p.slug}`)}
