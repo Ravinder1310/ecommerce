@@ -27,6 +27,9 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
+        <Link to={"/"} className="navbar-brand1" aria-expanded="false">
+              <img width={'100px'} height={'30px'} src="/images/myLogo.png"/>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
