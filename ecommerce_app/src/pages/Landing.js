@@ -94,13 +94,13 @@ const Landing = () => {
 
   // filter by category
   const handleFilter = (value, id) => {
+    
     let allCecked = [...checked];
     if (value) {
       allCecked.push(id);
     } else {
       allCecked = allCecked.filter((c) => c !== id);
     }
-
     setChecked(allCecked);
   };
 
@@ -164,8 +164,12 @@ const Landing = () => {
           <div className="col-md-9 container1">
             <img src="/images/prod1.gif" alt="error" width={'95%'} height={'150px'}/>
            
-            <div className="d-flex flex-wrap">
-                {products?.map((p) => (
+            <div>
+              {
+               loading ? <div style={{textAlign:"center"}}> <img width={'300px'} height={'300px'} src='/images/spinner.gif'/></div> : 
+               <div>
+                 <div className="d-flex flex-wrap">
+                 {products?.map((p) => (
                   <div style={{ width: "13rem",boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="card m-2">
                     <img
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
@@ -204,20 +208,26 @@ const Landing = () => {
                     </div>
                   </div>
                 ))}
+                 </div>
+                 <div className="container text-center m-2 p-3">
+               {products && products.length < total && (
+                 <button
+                   className="btn btn-warning"
+                   onClick={(e) => {
+                     e.preventDefault();
+                     setPage(page + 1);
+                   }}
+                 >
+                   {loading ? "Loading..." : "Loadmore"}
+                 </button>
+               )}
+             </div>
+               </div>
+               
+              }
+                
             </div>
-            <div className="container text-center m-2 p-3">
-              {products && products.length < total && (
-                <button
-                  className="btn btn-warning"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPage(page + 1);
-                  }}
-                >
-                  {loading ? "Loading..." : "Loadmore"}
-                </button>
-              )}
-            </div>
+            
           </div>
         </div>
       </Layout>
