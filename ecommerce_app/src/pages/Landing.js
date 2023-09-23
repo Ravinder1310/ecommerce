@@ -162,7 +162,8 @@ const Landing = () => {
             </div>
           </div>
           <div className="col-md-9 container1">
-            <Swipper/>
+            <img src="/images/prod1.gif" alt="error" width={'95%'} height={'150px'}/>
+           
             <div className="d-flex flex-wrap">
                 {products?.map((p) => (
                   <div style={{ width: "13rem",boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="card m-2">

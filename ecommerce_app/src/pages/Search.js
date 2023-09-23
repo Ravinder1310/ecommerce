@@ -3,11 +3,13 @@ import Layout from '../components/layouts/Layout'
 import { useSearch } from '../context/Search'
 import { useCart } from '../context/cart';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
 
     const [values, setValues] = useSearch();
     const [cart, setCart] = useCart();
+    const navigate = useNavigate()
     console.log(values);
 
   return (
