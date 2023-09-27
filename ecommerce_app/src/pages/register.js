@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '../components/layouts/Layout'
-import Toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import "../style/auth.css"
@@ -21,17 +21,17 @@ const Register = () => {
     try {
       const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name,email,password,phone,address,answer})
       if(res && res.data.success){
-        Toast.success( res.data && res.data.message);
+        toast.success( res.data && res.data.message);
         navigate("/login")
       }else{
 
-        Toast.error(res.data.message)
+        toast.error(res.data.message)
       }
     } catch (error) {
       console.log(error);
-      Toast.error('Something went wrong')
+      toast.error('Something went wrong')
     }
-    Toast.success('Registeration successfull')
+  
   }
 
   return (
