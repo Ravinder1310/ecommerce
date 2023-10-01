@@ -13,7 +13,7 @@ const Search = () => {
     console.log(values);
 
   return (
-    <Layout title={"Search Results - Ecommerce app"}>
+    <Layout title={"Search Results - U-Look"}>
         <div className='container'>
             <div className='text-center'>
                 <h1>Search results</h1>

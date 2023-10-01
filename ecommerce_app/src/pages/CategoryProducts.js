@@ -35,7 +35,7 @@ const CategoryProducts = () => {
    }
 
   return (
-    <Layout title={'Category - Ecommerce app'}>
+    <Layout title={'Category - U-Look'}>
       <h1 className='text-center mt-2' style={{color:"blue"}}>{category?.name}</h1>
       {
             loading ? <div style={{textAlign:"center"}}> <img width={'300px'} height={'300px'} src='/images/spinner.gif'/></div> : 

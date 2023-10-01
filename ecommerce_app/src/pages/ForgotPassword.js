@@ -30,7 +30,7 @@ const ForgotPassword = () => {
       toast.success('Registeration successfull')
     }
   return (
-    <Layout title={"Forgot password - Ecommerce app"}>
+    <Layout title={"Forgot password - U-Look"}>
       <div className="form-container">
         <h1 className="title">Reset Password</h1>
         <form onSubmit={handleSubmit}>

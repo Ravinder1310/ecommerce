@@ -40,7 +40,7 @@ const Login = () => {
   }
 
   return (
-    <Layout title={"Login - Ecommerce app"}>
+    <Layout title={"Login - U-Look"}>
       <div className="form-container">
         <h1 className="title">Login</h1>
         <form onSubmit={handleSubmit} style={{textAlign:"right"}}>

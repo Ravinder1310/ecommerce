@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Categories = () => {
     const categories = useCategory();
   return (
-    <Layout title={'Categories - Ecommerce app'}>
+    <Layout title={'Categories - U-Look'}>
       <div className='container'>
         <div className='row text-center'>
           {categories?.map((c) => (

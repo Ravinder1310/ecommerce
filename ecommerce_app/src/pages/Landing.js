@@ -127,7 +127,7 @@ const Landing = () => {
 
   return (
     <div>
-      <Layout title={"Home - Ecommerce app"}>
+      <Layout title={"Home - U-Look"}>
         <div className="row bigContainer">
           <div className="col-md-2 sidebar">
             <h4 className="text-center">Filter by Category</h4>
