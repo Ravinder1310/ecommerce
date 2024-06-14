@@ -1,42 +1,37 @@
-import React, { useState } from "react";
-import Slider from "react-slick";
+import React, { useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-const Swipper = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
-  };
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
+import './styles.css';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
+export default function App() {
   return (
-    <div>
-      <h2>Pause On Hover</h2>
-      <Slider {...settings}>
-        <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
-      </Slider>
-    </div>
+    <>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        // navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <SwiperSlide><img src="/images/banner2.webp" /></SwiperSlide>
+        <SwiperSlide><img src="/images/banner3.webp" /></SwiperSlide>
+      </Swiper>
+    </>
   );
-};
-
-export default Swipper;
+}

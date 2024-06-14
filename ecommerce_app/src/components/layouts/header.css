@@ -6,6 +6,10 @@
     font-size: 13px;
 }
 
+.navbar-nav{
+    margin-right: 30px;
+}
+
 @media screen and (min-width: 992px) {
     .navbar-brand1{
        display: none;
@@ -17,3 +21,16 @@
        display: none;
     }
    }
+
+
+   /* .dropdown-menu.dropdown-hover {
+    display: none;
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu.dropdown-hover {
+    display: block;
+  }
+  
+  .nav-item.dropdown:hover .nav-link.dropdown-toggle::after {
+    transform: rotate(180deg);
+  } */

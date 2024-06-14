@@ -13,21 +13,29 @@ const CreateProduct = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [offer, setOffer] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
   const [shipping, setShipping] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo1, setPhoto1] = useState("");
+  const [photo2, setPhoto2] = useState("");
+  const [photo3, setPhoto3] = useState("");
+  const [photo4, setPhoto4] = useState("");
+  const [photo5, setPhoto5] = useState("");
+
 
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/category/get-category`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting catgeory");
     }
   };
 
@@ -39,29 +47,103 @@ const CreateProduct = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const productData = new FormData();
-      productData.append("name", name);
-      productData.append("description", description);
-      productData.append("price", price);
-      productData.append("quantity", quantity);
-      productData.append("photo", photo);
-      productData.append("category", category);
+      const productData = constructProductData();
+      console.log("Product Data:", productData);
       const { data } = axios.post(
         `${process.env.REACT_APP_API}/api/v1/product/create-product`,
         productData
       );
-      if (data?.success) {
+      // setPrData(productData)
+      if (data?.success) {  
         toast.error(data?.message);
       } else {
         toast.success("Product Created Successfully");
+        console.log(productData);
         navigate("/dashboard/admin/products");
-        
       }
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
     }
   };
+
+  const constructProductData = () => {
+    const productData = new FormData();
+    productData.append("name", name);
+    productData.append("description", description);
+    productData.append("price", price);
+    productData.append("offer", offer);
+    productData.append("quantity", quantity);
+    productData.append("category", category);
+    productData.append("photo1",photo1);
+    productData.append("photo2",photo2);
+    productData.append("photo3",photo3);
+    productData.append("photo4",photo4);
+    productData.append("photo5",photo5);
+
+
+    return productData;
+  };
+
+  const handlePhotoUpload1 = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhoto1(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+ };
+
+const handlePhotoUpload2 = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPhoto2(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const handlePhotoUpload3 = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPhoto3(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const handlePhotoUpload4 = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPhoto4(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+const handlePhotoUpload5 = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPhoto5(reader.result);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+  
+
+    // useEffect(() => {
+    //   console.log(prData);
+    // },[prData])
 
   return (
     <Layout title={"Dashboard - Create Product"}>
@@ -90,28 +172,63 @@ const CreateProduct = () => {
                 ))}
               </Select>
               <div className="mb-3">
-                <label className="btn btn-outline-secondary col-md-12">
-                  {photo ? photo.name : "Upload Photo"}
+                <label>
+                  Upload Photo1:- 
                   <input
                     type="file"
-                    name="photo"
+                    name="photo1"
                     accept="image/*"
-                    onChange={(e) => setPhoto(e.target.files[0])}
-                    hidden
+                    onChange={handlePhotoUpload1}
                   />
                 </label>
               </div>
               <div className="mb-3">
-                {photo && (
-                  <div className="text-center">
-                    <img
-                      src={URL.createObjectURL(photo)}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
-                )}
+                <label>
+                  Upload Photo2
+                  <input
+                    type="file"
+                    name="photo2"
+                    accept="image/*"
+                    multiple="multiple"
+                    onChange={handlePhotoUpload2}
+                  />
+                </label>
+              </div>
+              <div className="mb-3">
+                <label>
+                  Upload Photo3
+                  <input
+                    type="file"
+                    name="photo3"
+                    accept="image/*"
+                    multiple="multiple"
+                    onChange={handlePhotoUpload3}
+                  />
+                </label>
+              </div>
+              <div className="mb-3">
+                <label>
+                  Upload Photo4
+                  <input
+                    type="file"
+                    name="photo4"
+                    accept="image/*"
+                    multiple="multiple"
+                    onChange={handlePhotoUpload4}
+                  />
+                </label>
+              </div>
+              <div className="mb-3">
+                <label>
+                  Upload Photo5
+                  <input
+                    type="file"
+                    name="photo5"
+                    accept="image/*"
+                    multiple="multiple"
+                    onChange={handlePhotoUpload5}
+                  />
+                </label>
               </div>
               <div className="mb-3">
                 <input
@@ -139,6 +256,15 @@ const CreateProduct = () => {
                   placeholder="write a Price"
                   className="form-control"
                   onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="number"
+                  value={offer}
+                  placeholder="write a offer"
+                  className="form-control"
+                  onChange={(e) => setOffer(e.target.value)}
                 />
               </div>
               <div className="mb-3">

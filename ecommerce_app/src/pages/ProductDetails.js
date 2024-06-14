@@ -4,6 +4,8 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useCart } from '../context/cart'
 import toast from 'react-hot-toast'
+import ProductImages from '../components/ProductImage'
+import "../style/details.css"
 
 const ProductDetails = () => {
   const params = useParams();
@@ -39,66 +41,69 @@ const getSimilarProducts = async(pid,cid) => {
 
   return (
     <Layout>
-      <div className='row container mt-2'>
-        <div className='col-md-5'>
-        <img
-                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
-                    className="card-img-top"
-                    height={'300'}
-                    width={'350px'}
-                    alt={product.name}
-                  />
-        </div>
-        <div className='col-md-5'>
-          <h1 className='tect-center'>Product details</h1>
-          <h4>Name : {product.name}</h4>
-          <h4>Description : {product.description}</h4>
-          <h4>Price : ${product.price}</h4>
-          <h4>Category : {product.category?.name}</h4>
-          <button className='btn btn-secondary ms-1'
-          onClick={() => {
-            setCart([...cart, product]);
-            localStorage.setItem('cart',JSON.stringify([...cart, product]))
-            toast.success("Item added to Cart");
-          }}
-          >Add to Cart</button>
-        </div>
-      </div>
-      <hr/>
-      <div className='row container'>
-        <h6>Similar products</h6>
-        {similarProducts.length < 1 && (<p className='text-center'>No similar product found</p>)}
-        <div className="d-flex flex-wrap">
-                {similarProducts?.map((p) => (
-                  <div className="card m-2" style={{ width: "18rem" }}>
-                    <img
-                      src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top"
-                      height={'250px'}
-                      alt={p.name}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{p.name}</h5>
-                      <p className="card-text">
-                        {p.description.substring(0, 40)}...
-                      </p>
-                      <p className="card-text">Price:- ${p.price}</p>
-                      <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>
-                        More Details
-                      </button>
-                      <button className="btn btn-secondary ms-1"
-                      onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem('cart',JSON.stringify([...cart, p]))
-                        toast.success("Item added to Cart");
-                      }}
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
-                ))}
+      <div className='product-details-container'>
+        <div className='row container mt-2'>
+          <ProductImages product={product}/>
+          <div className='col-md-5 product-details-info'>
+            <h1 className='text-center product-title'>{product.name}</h1>
+            <div className='d-flex flex-wrap justify-content-center align-items-center'>
+              <div className='product-rating'>
+                <i className='fas fa-star'></i>
+                <i className='fas fa-star'></i>
+                <i className='fas fa-star'></i>
+                <i className='fas fa-star'></i>
+                <i className='far fa-star'></i>
               </div>
+              <span className='px-2'>4.3 (516 reviews)</span>
+            </div>
+            <h4 className='mt-3'>Price: ${product.price}</h4>
+            <h4>Category: {product.category?.name}</h4>
+            <p className='mt-3'>{product.description}</p>
+            <button className='btn btn-secondary ms-1'
+            onClick={() => {
+              setCart([...cart, product]);
+              localStorage.setItem('cart',JSON.stringify([...cart, product]))
+              toast.success("Item added to Cart");
+            }}
+            >Add to Cart</button>
+          </div>
+        </div>
+        <hr/>
+        <div className='row container'>
+          <h6>Similar products</h6>
+          {similarProducts.length < 1 && (<p className='text-center'>No similar product found</p>)}
+          <div className="d-flex flex-wrap">
+            {similarProducts?.map((p) => (
+              <div className="card m-2" style={{ width: "18rem" }}>
+                <img
+                  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                  className="card-img-top"
+                  height={'250px'}
+                  alt={p.name}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-text">
+                    {p.description.substring(0, 40)}...
+                  </p>
+                  <p className="card-text">Price:- ${p.price}</p>
+                  <button className="btn btn-primary ms-1" onClick={() => navigate(`/product/${p.slug}`)}>
+                    More Details
+                  </button>
+                  <button className="btn btn-secondary ms-1"
+                  onClick={() => {
+                    setCart([...cart, p]);
+                    localStorage.setItem('cart',JSON.stringify([...cart, p]))
+                    toast.success("Item added to Cart");
+                  }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </Layout>
   )

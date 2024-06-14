@@ -6,9 +6,10 @@ import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
-import "../style/cards.css"
-import "../style/sidebar.css"
+import "../style/cards.css";
+import "../style/sidebar.css";
 import Swipper from "../components/Swipper";
+import { Header1 } from "../components/header1";
 
 const Landing = () => {
   const [products, setProducts] = useState([]);
@@ -28,16 +29,20 @@ const Landing = () => {
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+        `${process.env.REACT_APP_API}/api/v1/category/get-category` 
       );
       if (data?.success) {
         setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting category");
     }
   };
+
+  // const handleRangeChange = (e) => {
+  //   setRadio([parseFloat(e.target.value), parseFloat(e.target.value) + 1.9]);
+  // };
 
   useEffect(() => {
     getAllCategory();
@@ -52,11 +57,12 @@ const Landing = () => {
         `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
       );
       setLoading(false);
-      setProducts(data.products);
+      setProducts(data?.products);
+      console.log(data?.products[0].photo1);
     } catch (error) {
       setLoading(false);
       console.log(error);
-      toast.error("Someething Went Wrong");
+      toast.error("Something Went Wrong");
     }
   };
 
@@ -94,7 +100,6 @@ const Landing = () => {
 
   // filter by category
   const handleFilter = (value, id) => {
-    
     let allCecked = [...checked];
     if (value) {
       allCecked.push(id);
@@ -106,6 +111,7 @@ const Landing = () => {
 
   useEffect(() => {
     if (!checked.length || !radio.length) getAllProducts();
+    // console.log(products[0].photos);
   }, [checked.length, radio.length]);
 
   useEffect(() => {
@@ -127,16 +133,18 @@ const Landing = () => {
 
   return (
     <div>
+      <Header1 />
       <Layout title={"Home - U-Look"}>
+        <img width={"100%"} src="/images/saleLive1.png" />
         <div className="row bigContainer">
-          <div className="col-md-2 sidebar">
+          {/* <div className="col-md-2 sidebar">
             <h4 className="text-center">Filter by Category</h4>
             <div className="d-flex flex-column">
               {categories?.map((c) => (
                 <Checkbox
                   key={c._id}
                   onChange={(e) => handleFilter(e.target.checked, c._id)}
-                  style={{fontSize:"13px" }}
+                  style={{ fontSize: "13px" }}
                 >
                   {c.name}
                 </Checkbox>
@@ -144,13 +152,15 @@ const Landing = () => {
             </div>
             <h4 className="text-center mt-4">Filter by Price</h4>
             <div className="d-flex flex-column">
-              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                {Prices?.map((p) => (
-                  <div key={p._id}>
-                    <Radio value={p.array}>{p.name}</Radio>
-                  </div>
-                ))}
-              </Radio.Group>
+              <input
+                type="range"
+                min={0}
+                max={8}
+                step={1} // Adjust the step as needed
+                value={radio[0]}
+                onChange={handleRangeChange}
+              />
+              <output>{`$${radio[0]} to $${radio[0] + 1.9}`}</output>
             </div>
             <div className="d-flex flex-column">
               <button
@@ -160,74 +170,116 @@ const Landing = () => {
                 RESET FILTERS
               </button>
             </div>
-          </div>
-          <div className="col-md-9 container1">
-            <img src="/images/prod1.gif" alt="error" width={'95%'} height={'150px'}/>
-           
-            <div>
-              {
-               loading ? <div style={{textAlign:"center"}}> <img width={'300px'} height={'300px'} src='/images/spinner.gif'/></div> : 
-               <div>
-                 <div className="d-flex flex-wrap">
-                 {products?.map((p) => (
-                  <div style={{ width: "13rem",boxShadow:"rgba(0, 0, 0, 0.24) 0px 3px 8px" }} className="card m-2">
-                    <img
-                      src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top zoom-image"
-                      height={'170px'}
-                      alt={p.name}
-                    />
-                    <div className="card-body">
-                      <h6 className="card-title">{p.name.substring(0, 17)}...</h6>
-                      <p className="card-text">
-                        {p.description.substring(0, 30)}...
-                      </p>
-                      <div style={{display:"flex",justifyContent:"space-between"}}>
-                        <p className="card-text offer">Offer: {Math.floor(Math.random() * (max - min + 1)) + min}%</p>
-                      <p className="card-text price">Price:- ${p.price}</p>
-                      </div>
-                      
-                      <button
-                        className="btn btn-primary"
-                        onClick={() => navigate(`/product/${p.slug}`)}
-                        style={{fontSize:"11px"}}
-                      >
-                        More Details
-                      </button>
-                      <button
-                        className="btn btn-secondary ms-1"
-                        onClick={() => {
-                          setCart([...cart, p]);
-                          localStorage.setItem('cart',JSON.stringify([...cart, p]))
-                          toast.success("Item added to Cart");
-                        }}
-                        style={{fontSize:"11px"}}
-                      >
-                        Add to Cart
-                      </button>
-                    </div>
-                  </div>
-                ))}
-                 </div>
-                 <div className="container text-center m-2 p-3">
-               {products && products.length < total && (
-                 <button
-                   className="btn btn-warning"
-                   onClick={(e) => {
-                     e.preventDefault();
-                     setPage(page + 1);
-                   }}
-                 >
-                   {loading ? "Loading..." : "Loadmore"}
-                 </button>
-               )}
-             </div>
-               </div>
-               
-              }
-                
+          </div> */}
+          <div className="col-md-15 ">
+            <img
+              src="/images/topBanner2.png"
+              alt="error"
+              width={"100%"}
+              height={"300px"}
+              style={{ marginTop: "1px" }}
+            />
+            <div className="bannerSlider">
+              <h4>Must-Haves</h4>
+              <Swipper /> 
             </div>
-            
+            <div>
+              {loading ? (
+                <div style={{ textAlign: "center" }}>
+                  {" "}
+                  <img
+                    width={"300px"}
+                    height={"300px"}
+                    src="/images/spinner.gif"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <div className="d-flex flex-wrap container1"> 
+                    {products?.map((p) => (
+                      <div
+                        style={{
+                          width: "18rem",
+                          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                        }}
+                        className="card m-3"
+                      >
+                        <img
+                          src={`${p.photo1}`}
+                          className="card-img-top zoom-image"
+                          height={"170px"}
+                          alt={p.name}
+                        />
+                        <div className="card-body">
+                          <h6 className="card-title">
+                            {p.name.substring(0, 47)}...
+                          </h6>
+                          <p className="card-text">
+                            {p.description.substring(0, 37)}...
+                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div className="price-offer">
+                            <p className="price">MRP: <span className="pr">Rs.{p.price}</span></p>
+                            <p className="offerPrice">Rs.{Math.floor(p.price - ((p.price * p.offer)/100))}</p>
+                            <div className="verticleLine"></div>
+                            <p className="offer"> {p.offer}% Off</p>
+                            </div>
+                            
+                            {/* <p className="card-text price">
+                              OfferPrice:- {p.offerPrice}
+                            </p> */}
+                          </div>
+                        
+                         
+                        </div>
+                        <div className="btns-cart-container">
+                        <div className="btns-cart-details">
+                         <button
+                            className="detailsBtn"
+                            onClick={() => navigate(`/product/${p.slug}`)}
+                          >
+                            More Details
+                          </button>
+                          <button
+                            className="cartBtn"
+                            onClick={() => {
+                              setCart([...cart, p]);
+                              localStorage.setItem(
+                                "cart",
+                                JSON.stringify([...cart, p])
+                              );
+                              toast.success("Item added to Cart");
+                            }}
+                          >
+                            👜
+                          </button>
+                         </div>
+                        </div>
+                        
+                      </div>
+                    ))}
+                  </div>
+                  <div className="container text-center m-2 p-3">
+                    {products && products.length < total && (
+                      <button
+                        className="btn btn-warning"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setPage(page + 1);
+                        }}
+                      >
+                        {loading ? "Loading..." : "Loadmore"}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </Layout>
