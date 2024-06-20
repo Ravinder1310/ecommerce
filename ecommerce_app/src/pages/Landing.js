@@ -131,6 +131,8 @@ const Landing = () => {
     }
   };
 
+  const baseURL = process.env.REACT_APP_API;
+
   return (
     <div>
       <Header1 />
@@ -205,7 +207,7 @@ const Landing = () => {
                         className="card m-3"
                       >
                         <img
-                          src={`${p.photo1}`}
+                          src={`${baseURL}/${p.photo1}`}
                           className="card-img-top zoom-image"
                           height={"170px"}
                           alt={p.name}

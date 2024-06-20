@@ -75,69 +75,34 @@ const CreateProduct = () => {
     productData.append("offer", offer);
     productData.append("quantity", quantity);
     productData.append("category", category);
-    productData.append("photo1",photo1);
-    productData.append("photo2",photo2);
-    productData.append("photo3",photo3);
-    productData.append("photo4",photo4);
-    productData.append("photo5",photo5);
+    productData.append("photo1", photo1);
+    productData.append("photo2", photo2);
+    productData.append("photo3", photo3);
+    productData.append("photo4", photo4);
+    productData.append("photo5", photo5);
 
 
     return productData;
   };
 
   const handlePhotoUpload1 = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhoto1(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    setPhoto1(event.target.files[0]);
  };
 
 const handlePhotoUpload2 = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPhoto2(reader.result);
-    };
-    reader.readAsDataURL(file);
-  }
+  setPhoto2(event.target.files[0]);
 };
 
 const handlePhotoUpload3 = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPhoto3(reader.result);
-    };
-    reader.readAsDataURL(file);
-  }
+  setPhoto3(event.target.files[0]);
 };
 
 const handlePhotoUpload4 = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPhoto4(reader.result);
-    };
-    reader.readAsDataURL(file);
-  }
+  setPhoto4(event.target.files[0]);
 };
 
 const handlePhotoUpload5 = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPhoto5(reader.result);
-    };
-    reader.readAsDataURL(file);
-  }
+  setPhoto5(event.target.files[0]);
 };
   
 
