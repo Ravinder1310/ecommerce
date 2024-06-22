@@ -201,7 +201,7 @@ const Landing = () => {
                     {products?.map((p) => (
                       <div
                         style={{
-                          width: "18rem",
+                          width: "16rem",
                           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
                         }}
                         className="card m-3"
@@ -209,7 +209,7 @@ const Landing = () => {
                         <img
                           src={`${baseURL}/${p.photo1}`}
                           className="card-img-top zoom-image"
-                          height={"170px"}
+                          height={"150px"}
                           alt={p.name}
                         />
                         <div className="card-body">
@@ -269,7 +269,7 @@ const Landing = () => {
                   <div className="container text-center m-2 p-3">
                     {products && products.length < total && (
                       <button
-                        className="btn btn-warning"
+                        className="btn btn-warning "
                         onClick={(e) => {
                           e.preventDefault();
                           setPage(page + 1);

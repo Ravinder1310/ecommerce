@@ -36,9 +36,11 @@ const Register = () => {
 
   return (
     <Layout title={"Register - U-Look"}>
-      <div className="form-container">
+      <div className='regContainer'>
+         <img src="/images/regGif.gif"/>
+         <div className="form-container">
         <form onSubmit={handleSubmit}>
-        <h1 className="title">Register</h1>
+        <h1 className="title">SignUp</h1>
           <div className="mb-3">
             <input
               type="text"
@@ -112,6 +114,8 @@ const Register = () => {
           </button>
         </form>
       </div>
+      </div>
+      
     </Layout>
   );
 }

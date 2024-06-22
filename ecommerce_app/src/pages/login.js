@@ -41,9 +41,11 @@ const Login = () => {
 
   return (
     <Layout title={"Login - U-Look"}>
+      <div className='regContainer'>
+      <img src="/images/regGif.gif"/>
       <div className="form-container">
-        <h1 className="title">Login</h1>
         <form onSubmit={handleSubmit} style={{textAlign:"right"}}>
+        <h1 className="title">Login</h1>
           <div className="mb-3">
             <input
               type="email"
@@ -83,8 +85,11 @@ const Login = () => {
           <button type="submit" className="btn btn-primary">
             Login
           </button>
+          <img src='/images/logGif.gif'/>
         </form>
       </div>
+      </div>
+     
     </Layout>
   );
 }
