@@ -36,8 +36,6 @@ const Register = () => {
 
   return (
     <Layout title={"Register - U-Look"}>
-      <div className='regContainer'>
-         <img src="/images/regGif.gif"/>
          <div className="form-container">
         <form onSubmit={handleSubmit}>
         <h1 className="title">SignUp</h1>
@@ -113,7 +111,6 @@ const Register = () => {
             Register
           </button>
         </form>
-      </div>
       </div>
       
     </Layout>
