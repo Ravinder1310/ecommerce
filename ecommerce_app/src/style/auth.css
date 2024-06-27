@@ -5,7 +5,7 @@
 
 
 .form-container{
-    padding: 30px 40px;
+    padding: 56px 40px;
     background: url('./r.jpg') no-repeat center center/cover;
     background-size: 100% 100%;
 }
@@ -30,11 +30,6 @@
     color: rgb(245, 235, 233);
 }
 
-form > img{
-   width: 100%;
-   margin-top: 10px;
-   height: auto;
-}
 
 .form-container form input{
     border: none;

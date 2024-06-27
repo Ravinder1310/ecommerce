@@ -4,6 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* overflow: visible; */
+  
 }
 
 /* font-family: 'Playfair Display', serif; */
@@ -14,7 +16,7 @@
  .navbar {
   font-family: 'Poppins', sans-serif;
   font-size: 17px;
-  line-height: 26px;
+  line-height: 23px;
   text-transform: uppercase;
   box-shadow: 0 8px 6px -6px gray;
   --webkit-box-shadow: 0 8px 6px -6px gray;

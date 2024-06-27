@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layouts/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import "../style/cart.css"
 
 const CartPage = () => {
   const [auth, setAuth] = useAuth();
@@ -22,9 +23,9 @@ const CartPage = () => {
       cart?.map((item) => {
         total = total + item.price;
       });
-      return total.toLocaleString("en-US", {
+      return total.toLocaleString("en-IN", {
         style: "currency",
-        currency: "USD",
+        currency: "INR",
       });
     } catch (error) {
       console.log(error);
@@ -80,32 +81,30 @@ const CartPage = () => {
       setLoading(false);
     }
   };
+
+  const baseURL = process.env.REACT_APP_API;
+
   return (
     <Layout>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
-              {`Hello ${auth?.token && auth?.user?.name}`}
-            </h1>
-            <h4 className="text-center">
-              {cart?.length
+      <div className="cartContainer">
+        <div className="cartTitle">
+            <h1>
+              {`Hello ${auth?.token ? auth?.user?.name : "User"}`}... ,  {cart?.length
                 ? `You Have ${cart.length} items in your cart ${
                     auth?.token ? "" : "please login to checkout"
                   }`
                 : " Your Cart Is Empty"}
-            </h4>
-          </div>
+            </h1>
         </div>
         <div className="row">
           {cart?.length > 0 ? 
-          <div className="row">
+          <div className="cartPrdct">
         <div className="col-md-8">
         {cart?.map((p) => (
-          <div className="row mb-2 p-3 card flex-row" key={p._id}>
-            <div className="col-md-4">
+          <div className="singleCart" key={p._id}>
+            <div className="cartSingleImage">
               <img
-                src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+               src={`${baseURL}/${p.photo1}`}
                 className="card-img-top"
                 alt={p.name}
                 width="100px"
@@ -114,8 +113,8 @@ const CartPage = () => {
             </div>
             <div className="col-md-8">
               <p>{p.name}</p>
-              <p>{p.description.substring(0, 30)}</p>
-              <p>Price : {p.price}</p>
+              <p>{p.description.substring(0, 30)}...</p>
+              <p>Price :- Rs.{Math.floor(p.price - (p.price*p.offer)/100)}</p>
               <button
                 className="btn btn-danger"
                 onClick={() => deleteCartItem(p._id)}
@@ -126,7 +125,7 @@ const CartPage = () => {
           </div>
         ))}
       </div>
-    <div className="col-md-4 text-center">
+    <div className="paymentCheck">
     <h2>Cart Summary</h2>
     <p>Total | Checkout | Payment</p>
     <hr />
@@ -195,7 +194,11 @@ const CartPage = () => {
   
 </div>
 </div>
-      : <div className="text-center">  <img src="/images/emptyCart2.png" height={'450px'} alt="Image not found"/></div>
+      : <div className="emptyImage">  <img src="/images/ec.png" width={'400px'} height={'300px'} alt="Image not found"/><br/>
+      <NavLink to={"/"} className="nav-link">
+            <button className="cartButton">Continue Shopping</button>
+      </NavLink>
+      </div>
         }
         </div>
           

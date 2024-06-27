@@ -24,10 +24,11 @@ import Categories from "./pages/Categories";
 import CategoryProducts from "./pages/CategoryProducts";
 import CartPage from "./pages/CartPage";
 import AdminOrders from "./pages/Admin/AdminOrders";
+import "./App.css"
 
 function App() {
   return (
-    <>
+    <div className="wrapper">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
@@ -56,7 +57,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
