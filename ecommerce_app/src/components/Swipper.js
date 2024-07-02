@@ -29,8 +29,8 @@ export default function App() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide><img src="/images/banner2.webp" /></SwiperSlide>
-        <SwiperSlide><img src="/images/banner3.webp" /></SwiperSlide>
+        <SwiperSlide><img src="/images/bnr1.webp" /></SwiperSlide>
+        <SwiperSlide><img src="/images/bnr2.webp" /></SwiperSlide>
       </Swiper>
     </>
   );

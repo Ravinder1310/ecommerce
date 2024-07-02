@@ -175,10 +175,11 @@ const Landing = () => {
           </div> */}
           <div className="col-md-15 ">
             <img
-              src="/images/topBanner2.png"
+              src="/images/bnr3.webp"
               alt="error"
               width={"100%"}
               height={"300px"}
+              className="topBanner"
               style={{ marginTop: "1px" }}
             />
             <div className="bannerSlider">

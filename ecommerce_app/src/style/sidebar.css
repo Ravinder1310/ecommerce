@@ -23,6 +23,10 @@
    .container1{
     width: 100%;
    }
+
+   .topBanner{
+    height: 150px;
+   }
   }
 
   /* @media screen and (max-width: 1541px) {
