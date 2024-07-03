@@ -6,6 +6,13 @@
     font-size: 13px;
 }
 
+.mainLogo{
+  display: block;
+  margin: 0 auto;
+  width: 100px; 
+  height: 50px;
+}
+
 .navbar-nav{
     margin-right: 30px;
 }

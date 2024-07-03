@@ -28,7 +28,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link to={"/"} className="navbar-brand1" aria-expanded="false">
-            <img width={"100px"} height={"30px"} src="/images/nykaa.png" />
+            <img width={"100px"} height={"50px"} src="/images/pvn.png" />
           </Link>
           <button
             className="navbar-toggler"
@@ -43,7 +43,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to={"/"} className="navbar-brand">
-              <img width={"100px"} height={"30px"} src="/images/nykaa.png" />
+              <img className="mainLogo" src="/images/pvn2.png"/>
             </Link>
             
             <ul className="navbar-nav ms-auto mb-lg-0">

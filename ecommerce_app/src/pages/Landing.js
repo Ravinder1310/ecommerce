@@ -22,8 +22,6 @@ const Landing = () => {
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
 
-  const min = 10;
-  const max = 75;
 
   //get all category
   const getAllCategory = async () => {
@@ -180,10 +178,9 @@ const Landing = () => {
               width={"100%"}
               height={"300px"}
               className="topBanner"
-              style={{ marginTop: "1px" }}
+              style={{ marginTop: "40px" }}
             />
             <div className="bannerSlider">
-              <h4>Must-Haves</h4>
               <Swipper /> 
             </div>
             <div>
@@ -197,29 +194,27 @@ const Landing = () => {
                   />
                 </div>
               ) : (
-                <div>
-                  <div className="d-flex flex-wrap container1"> 
+                <div className="container1">
+                  <h4>Hot List</h4>
+                  <div className="container2"> 
                     {products?.map((p) => (
                       <div
-                        style={{
-                          width: "16rem",
-                          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-                        }}
-                        className="card m-3"
+                        onClick={() => navigate(`/product/${p.slug}`)}
+                        className="card "
                       >
                         <img
                           src={`${baseURL}/${p.photo1}`}
-                          className="card-img-top zoom-image"
-                          height={"150px"}
+                          className="card-img zoom-image"
+                          height={"220px"}
                           alt={p.name}
                         />
                         <div className="card-body">
-                          <h6 className="card-title">
-                            {p.name.substring(0, 47)}...
-                          </h6>
-                          <p className="card-text">
-                            {p.description.substring(0, 37)}...
+                          <p className="card-title">
+                            {p.name.substring(0, 40)}...
                           </p>
+                          {/* <p className="card-text">
+                            {p.description.substring(0, 37)}...
+                          </p> */}
                           <div
                             style={{
                               display: "flex",
@@ -227,10 +222,10 @@ const Landing = () => {
                             }}
                           >
                             <div className="price-offer">
-                            <p className="price">MRP: <span className="pr">Rs.{p.price}</span></p>
-                            <p className="offerPrice">Rs.{Math.floor(p.price - ((p.price * p.offer)/100))}</p>
-                            <div className="verticleLine"></div>
-                            <p className="offer"> {p.offer}% Off</p>
+                            <p className="price"><i class="fa fa-inr"></i>{p.price}</p>
+                            <p className="offerPrice"><i class="fa fa-inr"></i>{Math.floor(p.price - ((p.price * p.offer)/100))}</p>
+                            {/* <div className="verticleLine"></div> */}
+                            <p className="offer"> {p.offer}%</p>
                             </div>
                             
                             {/* <p className="card-text price">
@@ -240,7 +235,7 @@ const Landing = () => {
                         
                          
                         </div>
-                        <div className="btns-cart-container">
+                        {/* <div className="btns-cart-container">
                         <div className="btns-cart-details">
                          <button
                             className="detailsBtn"
@@ -262,7 +257,7 @@ const Landing = () => {
                             👜
                           </button>
                          </div>
-                        </div>
+                        </div> */}
                         
                       </div>
                     ))}

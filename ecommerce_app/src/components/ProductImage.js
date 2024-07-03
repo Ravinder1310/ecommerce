@@ -6,12 +6,14 @@ import "./images.css"
 
 const ProductImages = ({product}) => {
 
+  const baseURL = process.env.REACT_APP_API;
+
   const images = [
-    { name: `${product.photo1}`, vw: '355w' },
-    { name: `${product.photo2}`, vw: '481w' },
-    { name: `${product.photo3}`, vw: '584w' },
-    { name: `${product.photo4}`, vw: '687w' },
-    { name: `${product.photo5}`, vw: '770w' },
+    { name: `${baseURL}/${product.photo1}`, vw: '355w' },
+    { name: `${baseURL}/${product.photo2}`, vw: '481w' },
+    { name: `${baseURL}/${product.photo3}`, vw: '584w' },
+    { name: `${baseURL}/${product.photo4}`, vw: '687w' },
+    { name: `${baseURL}/${product.photo5}`, vw: '770w' },
   ];
 
 
@@ -24,6 +26,8 @@ const ProductImages = ({product}) => {
   const srcSet = images.map((image) => {
     return `${image.name} ${image.vw}`;
   }).join(', ');
+
+
 
   return (
     <div className="product-images">
